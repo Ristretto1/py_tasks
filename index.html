@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<button id="left" style="
+  font-size: 20pt;
+  padding: 10pt;
+">Left
+</button>
+<button id="right" style="
+  font-size: 20pt;
+  padding: 10pt;
+">Right
+</button>
+
+<div id="img-block" style="width: 288px; height: 288px; overflow: hidden; position: relative; left: 0;">
+    <img id="hero-img" style="width: 1728px; height: 1152px; position: relative; top: -576px; left: 0; transform: scale(-1,1)" src="assets/img/hero-sprite.png"/>
+</div>
+
+<script>
+    // ПЕРЕМЕННЫЕ
+    let heroImg = window.document.querySelector('#hero-img');
+    let rightButton = window.document.querySelector('#right');
+    let imgBlock = window.document.querySelector('#img-block');
+    let rightPosition = 0;
+    let imgBlockPosition = 0;
+
+    // ФУНКЦИИ
+    const rightHandler = () => {
+        rightPosition++
+        imgBlockPosition++
+        if (rightPosition > 5) rightPosition = 0
+        heroImg.style.left = `-${rightPosition*288}px`
+        imgBlock.style.left = `${imgBlockPosition*20}px`
+    }
+
+    // ОБРАБОТЧИКИ СОБЫТИЙ
+    rightButton.onclick = rightHandler;
+</script>
+</body>
+</html>
