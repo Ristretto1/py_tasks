@@ -9,8 +9,64 @@
 <link href="style.css" rel="stylesheet"></head>
 
 <body>
-  <img src="./img/webpack.svg" alt="Webpack Logo" width="200px">
-  <h3>Welcome to Webpack 4 starter </h3>
+  <header class="header">
+    <button class="button button--burger-open">
+      <img src="./img/icons/burger.svg" alt="open menu">
+    </button>
+    <img class="header__logo" src="./img/logo.svg" alt="CPS logotype">
+    <div class="header__repair repair">
+      <button class="button">
+        <img src="./img/icons/repair.svg" alt="repair">
+      </button>
+      <button class="button">
+        <img src="./img/icons/search_reverse.svg" alt="search repair">
+      </button>
+    </div>
+    
+    <nav class="nav">
+      <div class="nav__header">
+        <button class="button button--burger-close">
+          <img src="./img/icons/burger_close.svg" alt="close menu">
+        </button>
+        <img class="nav__logo" src="./img/logo.svg" alt="CPS logotype">
+        <button class="button nav__button--search">
+          <img src="./img/icons/search.svg" alt="search">
+        </button>
+      </div>
+      <ul class="nav__list">
+        <li class="nav__item nav__item--active"><a class="nav__link" href="#">Ремонт техники</a></li>
+        <li class="nav__item"><a class="nav__link" href="#">Услуги и сервисы</a></li>
+        <li class="nav__item"><a class="nav__link" href="#">Корпоративным клиентам</a></li>
+        <li class="nav__item"><a class="nav__link" href="#">Продавцам техники</a></li>
+        <li class="nav__item"><a class="nav__link" href="#">Партнерам</a></li>
+        <li class="nav__item"><a class="nav__link" href="#">Производителям</a></li>
+        <li class="nav__item"><a class="nav__link" href="#">Наши сервисные центры</a></li>
+        <li class="nav__item"><a class="nav__link" href="#">Контакты</a></li>
+      </ul>
+      <div class="nav__contact-block">
+        <div class="nav__buttons-wrapper">
+          <button class="button phone">
+            <img src="./img/icons/phone.svg" alt="phone">
+          </button>
+          <button class="button chat">
+            <img src="./img/icons/chat.svg" alt="chat">
+          </button>
+          <button class="button profile">
+            <img src="./img/icons/profile.svg" alt="profile">
+          </button>
+        </div>
+        <a class="nav__link" href="mailto:mail@cps.com">mail@cps.com</a>
+        <a class="nav__link nav__link--phone" href="tel:88008908900">8 800 890 8900</a>
+        <div class="nav__lang">
+          <button class="nav__lang-button nav__lang-button--active">ru</button>
+          <button class="nav__lang-button">en</button>
+          <button class="nav__lang-button">ch</button>
+        </div>
+      </div>
+    </nav>
+    <div class="nav__shadow"></div>
+    
+  </header>
 <script type="text/javascript" src="./js/bundle.js"></script></body>
 
 </html>
