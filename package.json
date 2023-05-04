@@ -1,57 +1,43 @@
 {
-  "name": "web-last-block",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [
-    "web",
-    "scss",
-    "html",
-    "javascript",
-    "webpack"
-  ],
-  "license": "ISC",
-  "author": "Kata Academy",
-  "main": "index.js",
+  "name": "inc_social-network",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^13.0.0",
+    "@testing-library/user-event": "^13.2.1",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.7.13",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "typescript": "^4.4.2",
+    "web-vitals": "^2.1.0"
+  },
   "scripts": {
-    "build": "webpack --mode production",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "dev": "webpack --mode development",
-    "start": "webpack-dev-server --mode development --open",
-    "watch": "webpack --mode development --watch"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "browserslist": [
-    "last 2 versions",
-    "Firefox ESR",
-    "not OperaMini All",
-    "not dead"
-  ],
-  "devDependencies": {
-    "@babel/core": "7.5.5",
-    "@babel/preset-env": "7.5.5",
-    "autoprefixer": "9.6.1",
-    "babel-loader": "8.0.6",
-    "copy-webpack-plugin": "5.1.0",
-    "css-loader": "3.2.0",
-    "file-loader": "4.2.0",
-    "gh-pages": "2.1.1",
-    "html-webpack-plugin": "3.2.0",
-    "mini-css-extract-plugin": "0.8.0",
-    "node-sass": "^4.14.1",
-    "postcss-loader": "3.0.0",
-    "sass-loader": "7.2.0",
-    "webpack": "4.41.2",
-    "webpack-cli": "3.3.7",
-    "webpack-dev-server": "^3.11.0"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "engineStrict": true,
-  "engines": {
-    "node": "~14.18.3",
-    "npm": "~6.14.15"
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
