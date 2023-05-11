@@ -3,9 +3,9 @@ import {Posts} from "./Posts/Posts";
 
 export const Profile = () => {
     return (
-        <main className="content">
+        <div>
             content
             <Posts/>
-        </main>
+        </div>
     );
 }
