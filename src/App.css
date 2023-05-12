@@ -13,10 +13,20 @@
 
 .nav {
     width: 150px;
-    background-color: bisque;
+    background-color: blueviolet;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav a.active {
+    color: gold;
 }
 
 .content {
     background-color: chocolate;
     width: 100%;
 }
+
