@@ -4,9 +4,11 @@ import {Post} from "./Post/Post";
 export const Posts = () => {
     return (
         <div>
-            My posts
-            <div>
-                <textarea></textarea>
+            <h3>My posts</h3>
+            <div style={{marginBottom: '15px'}}>
+                <div>
+                    <textarea></textarea>
+                </div>
                 <button>add post</button>
             </div>
             <div>
