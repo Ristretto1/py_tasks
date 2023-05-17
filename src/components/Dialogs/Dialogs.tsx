@@ -12,19 +12,26 @@ export const Dialogs = () => {
         width: '150px'
     }
 
+    const dialogsData = [
+        {id: 1, name: 'Kirill'},
+        {id: 2, name: 'Tayson'},
+        {id: 3, name: 'Anya'},
+    ]
+    const messagesData = [
+        {id: 1, message: '159'},
+        {id: 2, message: '1jhjh59'},
+        {id: 3, message: '4654oip'},
+    ]
+
 
     return (
         <div className={'dialogs_wrapper'} style={styleDialogsWrapper}>
             <div className={'dialogs'} style={styleDialogs}>
-                <Dialog name={'Kirill'} id={1}/>
-                <Dialog name={'Tayson'} id={2}/>
-                <Dialog name={'Anya'} id={3}/>
+                {dialogsData.map(el => <Dialog name={el.name} id={el.id} key={el.id}/>)}
+
             </div>
             <div className="messages">
-                <Message message={'159'}/>
-                <Message message={'1jhjh59'}/>
-                <Message message={'4654oip'}/>
-                <Message message={'236'}/>
+                {messagesData.map(el => <Message message={el.message} key={el.id}/>)}
             </div>
         </div>
     );
