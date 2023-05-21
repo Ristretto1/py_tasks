@@ -9,7 +9,9 @@ export const Post = (props: PostPropsType) => {
     return (
         <div>
             {props.text}
-            likes: {props.likesCount}
+            <div>
+                likes: {props.likesCount}
+            </div>
         </div>
     );
 };

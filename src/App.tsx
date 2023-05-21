@@ -8,8 +8,14 @@ import {Route, Routes} from "react-router-dom";
 import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
+import {DialogType, MessageType, PostType} from "./index";
 
-function App() {
+type AppPropsType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+    posts: PostType[]
+}
+function App(props: AppPropsType) {
     return (
         <div className="app_wrapper">
             <Header/>
@@ -17,8 +23,8 @@ function App() {
                 <Navbar/>
                 <div className={'content'}>
                     <Routes>
-                        <Route element={<Profile/>} path={'/profile'}/>
-                        <Route element={<Dialogs/>} path={'/dialogs'}/>
+                        <Route element={<Profile posts={props.posts}/>} path={'/profile'}/>
+                        <Route element={<Dialogs messages={props.messages} dialogs={props.dialogs}/>} path={'/dialogs'}/>
                         <Route element={<News/>} path={'/news'}/>
                         <Route element={<Music/>} path={'/music'}/>
                         <Route element={<Settings/>} path={'/settings'}/>
