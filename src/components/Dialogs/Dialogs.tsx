@@ -1,11 +1,13 @@
 import React from 'react';
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
-import {DialogType, MessageType} from "../../index";
+import {DialogType, MessageType} from "../../types";
 
 type DialogsPropsType = {
-    dialogs: DialogType[]
-    messages: MessageType[]
+    messagesData: {
+        dialogs: DialogType[]
+        messages: MessageType[]
+    }
 }
 
 export const Dialogs = (props: DialogsPropsType) => {
@@ -17,14 +19,16 @@ export const Dialogs = (props: DialogsPropsType) => {
         width: '150px'
     }
 
+    const mappedDialogs = props.messagesData.dialogs.map(el => <Dialog name={el.name} id={el.id} key={el.id}/>)
+    const mappedMessages = props.messagesData.messages.map(el => <Message message={el.message} key={el.id}/>)
+
     return (
         <div className={'dialogs_wrapper'} style={styleDialogsWrapper}>
             <div className={'dialogs'} style={styleDialogs}>
-                {props.dialogs.map(el => <Dialog name={el.name} id={el.id} key={el.id}/>)}
-
+                {mappedDialogs}
             </div>
             <div className="messages">
-                {props.messages.map(el => <Message message={el.message} key={el.id}/>)}
+                {mappedMessages}
             </div>
         </div>
     );

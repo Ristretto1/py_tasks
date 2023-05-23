@@ -1,12 +1,13 @@
 import React from 'react';
 import {Post} from "./Post/Post";
-import {PostType} from "../../../index";
+import {PostType} from "../../../types";
 
 type PostsPropsType = {
     posts: PostType[]
 }
 
 export const Posts = (props: PostsPropsType) => {
+    const mappedPosts = props.posts.map(el => <Post text={el.text} likesCount={el.likesCount} key={el.id}/>)
 
     return (
         <div>
@@ -18,7 +19,7 @@ export const Posts = (props: PostsPropsType) => {
                 <button>add post</button>
             </div>
             <div>
-                {props.posts.map(el => <Post text={el.text} likesCount={el.likesCount} key={el.id}/>)}
+                {mappedPosts}
             </div>
         </div>
     );

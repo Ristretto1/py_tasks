@@ -8,12 +8,10 @@ import {Route, Routes} from "react-router-dom";
 import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
-import {DialogType, MessageType, PostType} from "./index";
+import {StateType} from "./types";
 
 type AppPropsType = {
-    dialogs: DialogType[]
-    messages: MessageType[]
-    posts: PostType[]
+    state: StateType
 }
 function App(props: AppPropsType) {
     return (
@@ -23,8 +21,8 @@ function App(props: AppPropsType) {
                 <Navbar/>
                 <div className={'content'}>
                     <Routes>
-                        <Route element={<Profile posts={props.posts}/>} path={'/profile'}/>
-                        <Route element={<Dialogs messages={props.messages} dialogs={props.dialogs}/>} path={'/dialogs'}/>
+                        <Route element={<Profile profileData={props.state.profileData}/>} path={'/profile'}/>
+                        <Route element={<Dialogs messagesData={props.state.messagesData} />} path={'/dialogs'}/>
                         <Route element={<News/>} path={'/news'}/>
                         <Route element={<Music/>} path={'/music'}/>
                         <Route element={<Settings/>} path={'/settings'}/>
