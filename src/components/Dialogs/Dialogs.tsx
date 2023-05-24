@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {LegacyRef} from 'react';
 import {Dialog} from "./Dialog/Dialog";
 import {Message} from "./Message/Message";
 import {DialogType, MessageType} from "../../types";
@@ -22,6 +22,11 @@ export const Dialogs = (props: DialogsPropsType) => {
     const mappedDialogs = props.messagesData.dialogs.map(el => <Dialog name={el.name} id={el.id} key={el.id}/>)
     const mappedMessages = props.messagesData.messages.map(el => <Message message={el.message} key={el.id}/>)
 
+    const textareaRef: LegacyRef<HTMLTextAreaElement> | undefined = React.createRef()
+    const addMessage = () => {
+        console.log(textareaRef.current?.value)
+    }
+
     return (
         <div className={'dialogs_wrapper'} style={styleDialogsWrapper}>
             <div className={'dialogs'} style={styleDialogs}>
@@ -29,6 +34,12 @@ export const Dialogs = (props: DialogsPropsType) => {
             </div>
             <div className="messages">
                 {mappedMessages}
+                <div style={{marginTop: '15px'}}>
+                    <div>
+                        <textarea ref={textareaRef} ></textarea>
+                    </div>
+                    <button onClick={addMessage}>send message</button>
+                </div>
             </div>
         </div>
     );
