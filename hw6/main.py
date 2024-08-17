@@ -1,13 +1,4 @@
-"""Домашка:
-1. Сделать последнюю домашку
-2. Сделать функцию is_palindrome, которая определяет является ли строка палиндромом или нет.
-При этом введено может быть как слово, так и целые предложения с пробелами и с различными знаками препинания.
-Необходимо избегать всех символов кроме букв. А также не копировать входящие данные
-(например, развернуть строку через срез — это скопировать входящие данные)
-3. Функции на проверку имени, возраста и совет паспорт должны возвращать None
-(иначе говоря, ничего не должны возвращать), если не было ошибок или нет советов
-4. Сделать функцию, которая генерирует случайное число от 0 до 10,
-и в бесконечном цикле просит пользователя угадать это число, если пользователь ввёл имя и возраст корректные"""
+"""Домашка в отдельном файле рядом"""
 from random import randrange
 from typing import Optional
 
@@ -35,40 +26,35 @@ def is_palindrome(value) -> bool:
     return True
 
 
-# print('<ПУСТАЯ СТРОКА>', is_palindrome(''))
-# print('kik', is_palindrome('kik'))
-# print('kir', is_palindrome('kir'))
-# print('k ik', is_palindrome('k ik'))
-# print('k ir', is_palindrome('k ir'))
-# print('k i!k', is_palindrome('k i!k'))
-# print('k i!r', is_palindrome('k i!r'))
+def clear_whitespaces(value: str) -> str:
+    """Удаляет пробелы в начале и в конце строки"""
+
+    return value.strip()
 
 
-def validate_age(age: str) -> str:
+def validate_age(age: int):
     """Проверяет, является ли возраст допустимым"""
 
-    if not age:
-        return 'Ошибка: Нужно обязательно ввести возраст'
-
-    age = int(age)
     if age <= 0:
-        return 'Ошибка: Возраст не может быть отрицательным или равен нулю'
+        raise Exception('Ошибка: Возраст не может быть отрицательным или равен нулю')
     if age < 14:
-        return 'Ошибка: Минимальный возраст — 14 лет.'
+        raise Exception('Ошибка: Минимальный возраст — 14 лет.')
+    return
 
 
-def validate_name(name: str) -> str:
+def validate_name(name: str):
     """Проверяет, является ли имя допустимым"""
 
     if not name:
-        return 'Ошибка: Пустое имя.'
+        raise Exception('Ошибка: Пустое имя.')
     if len(name) < 3:
-        return 'Ошибка: В имени должно быть минимум 3 символа.'
+        raise Exception('Ошибка: В имени должно быть минимум 3 символа.')
     if name.count(' ') > 1:
-        return 'Ошибка: Допустимое кол-во пробелов в имени - 1'
+        raise Exception('Ошибка: Допустимое кол-во пробелов в имени - 1')
+    return
 
 
-def advise_change_passport(age: int) -> Optional[str]:
+def get_passport_advise(age: int) -> Optional[str]:
     """Выдаёт совет про паспорт согласно возрастным рамкам"""
 
     if 16 <= age <= 17:
@@ -80,39 +66,53 @@ def advise_change_passport(age: int) -> Optional[str]:
     return None
 
 
-def start_game():
-    """Начинает бесконечную игру на угадывание числа от 0 до 10"""
+def guess_number_game():
+    """Игра Угадай число от 0 до 5"""
 
-    right_answer = randrange(0, 11)
+    right_answer = randrange(0, 6)
+    count_game_tries = 0
 
     while True:
-        guess = input('Угадай число от 0 до 10: ')
+        count_game_tries += 1
+        guess = input('Угадай число от 0 до 5: ')
 
         if not guess.strip():
             print('Нужно ввести число. Попробуй еще')
             continue
 
         if int(guess) == right_answer:
-            print(f'Да, ты угадал! Это действительно {guess}')
+            print(f'Да, ты угадал! Это действительно {guess}. Ты потратил {count_game_tries} попытки(-ок)')
             break
         else:
             print(f'Нет, попробуй ещё')
 
 
 def main():
-    input_name = input('Введите Ваше имя: ').strip()
-    input_age = input('Введите Ваш возраст: ')
+    count_validate_tries = 0
 
-    error_age = validate_age(input_age)
-    error_name = validate_name(input_name)
+    while True:
+        count_validate_tries += 1
+        print()  # Это для отделения блоков попыток в консоли
+        print(f'Это {count_validate_tries}ая попытка ввести данные игрока')
+        input_name = clear_whitespaces(input('Введите Ваше имя: '))
+        input_age = input('Введите Ваш возраст: ')
 
-    if error_age or error_name:
-        print(error_age or error_name)
-        main()
-    else:
-        advice = advise_change_passport(int(input_age))
-        print(f'Привет, {input_name.title()}! Тебе {input_age} лет. {advice or ""}')
-        start_game()
+        try:
+            input_age = int(input_age)
+        except ValueError as e:
+            print(f'Я поймал ошибку "Неправильный формат возраста": {e}')
+            continue
+
+        try:
+            validate_age(input_age)
+            validate_name(input_name)
+            break
+        except Exception as e:
+            print(f'Я поймал ошибку: {e}')
+
+    advice = get_passport_advise(input_age)
+    print(f'Привет, {input_name.title()}! Тебе {input_age} лет. {advice or ""}')
+    guess_number_game()
 
 
 main()
