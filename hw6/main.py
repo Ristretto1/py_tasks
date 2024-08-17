@@ -73,10 +73,12 @@ def guess_number_game():
     count_game_tries = 0
 
     while True:
-        guess = input('Угадай число от 0 до 5: ')
+        guess = clear_whitespaces(input('Угадай число от 0 до 5: '))
 
-        if not guess.strip():
-            print('Нужно ввести число. Попробуй еще')
+        try:
+            guess = int(guess)
+        except ValueError:
+            print(f'Я поймал ошибку: Это не число')
             count_game_tries += 1
             continue
 
@@ -101,8 +103,8 @@ def main():
 
         try:
             input_age = int(input_age)
-        except ValueError as e:
-            print(f'Я поймал ошибку "Неправильный формат возраста": {e}')
+        except ValueError:
+            print(f'Я поймал ошибку: Возраст должен быть числом')
             count_validate_tries += 1
             continue
 
