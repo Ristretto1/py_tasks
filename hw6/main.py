@@ -83,18 +83,20 @@ def advise_change_passport(age: int) -> Optional[str]:
 def start_game():
     """Начинает бесконечную игру на угадывание числа от 0 до 10"""
 
+    right_answer = randrange(0, 11)
+
     while True:
-        right_answer = randrange(0, 11)
         guess = input('Угадай число от 0 до 10: ')
 
-        if not guess:
+        if not guess.strip():
             print('Нужно ввести число. Попробуй еще')
             continue
 
         if int(guess) == right_answer:
             print(f'Да, ты угадал! Это действительно {guess}')
+            break
         else:
-            print(f'Нет, это было {right_answer}, попробуй ещё')
+            print(f'Нет, попробуй ещё')
 
 
 def main():
