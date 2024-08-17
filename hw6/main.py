@@ -73,27 +73,27 @@ def guess_number_game():
     count_game_tries = 0
 
     while True:
-        count_game_tries += 1
         guess = input('Угадай число от 0 до 5: ')
 
         if not guess.strip():
             print('Нужно ввести число. Попробуй еще')
+            count_game_tries += 1
             continue
 
         if int(guess) == right_answer:
-            print(f'Да, ты угадал! Это действительно {guess}. Ты потратил {count_game_tries} попытки(-ок)')
+            print(f'Да, ты угадал! Это действительно {guess}. Ты потратил {count_game_tries + 1} попытки(-ок)')
             break
         else:
             print(f'Нет, попробуй ещё')
+            count_game_tries += 1
 
 
 def main():
     count_validate_tries = 0
 
     while True:
-        count_validate_tries += 1
         print()  # Это для отделения блоков попыток в консоли
-        print(f'Это {count_validate_tries}ая попытка ввести данные игрока')
+        print(f'Это {count_validate_tries + 1}ая попытка ввести данные игрока')
         input_name = clear_whitespaces(input('Введите Ваше имя: '))
         input_age = input('Введите Ваш возраст: ')
 
@@ -101,6 +101,7 @@ def main():
             input_age = int(input_age)
         except ValueError as e:
             print(f'Я поймал ошибку "Неправильный формат возраста": {e}')
+            count_validate_tries += 1
             continue
 
         try:
@@ -109,6 +110,7 @@ def main():
             break
         except Exception as e:
             print(f'Я поймал ошибку: {e}')
+            count_validate_tries += 1
 
     advice = get_passport_advise(input_age)
     print(f'Привет, {input_name.title()}! Тебе {input_age} лет. {advice or ""}')
