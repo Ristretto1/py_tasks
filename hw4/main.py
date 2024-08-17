@@ -3,7 +3,8 @@
 def validate_age(age: int) -> str:
     if age <= 0:
         return 'Ошибка: Возраст не может быть отрицательным или равен нулю'
-    elif age < 14:
+
+    if age < 14:
         return 'Ошибка: Минимальный возраст — 14 лет.'
 
 
@@ -11,9 +12,11 @@ def validate_age(age: int) -> str:
 def validate_name(name: str) -> str:
     if len(name) == 0:
         return 'Ошибка: Пустое имя.'
-    elif len(name) < 3:
+
+    if len(name) < 3:
         return 'Ошибка: В имени должно быть минимум 3 символа.'
-    elif name.count(' ') > 1:
+
+    if name.count(' ') > 1:
         return 'Ошибка: Допустимое кол-во пробелов в имени - 1'
 
 
@@ -21,21 +24,47 @@ def validate_name(name: str) -> str:
 def advise_change_passport(age: int) -> str:
     if 16 <= age <= 17:
         return 'Нужно не забыть получить первый паспорт.'
-    elif 25 <= age <= 26:
+
+    if 25 <= age <= 26:
         return 'Нужно не забыть заменить паспорт.'
-    elif 45 <= age <= 46:
+
+    if 45 <= age <= 46:
         return 'Нужно не забыть второй раз заменить паспорт.'
-    else:
-        return ''
+
+    return ''
 
 
 # Собственная реализация ''.strip()
 def custom_strip(text: str) -> str:
-    while text and text[0] == ' ':
-        text = text[1:]
-    while text and text[-1] == ' ':
-        text = text[:-1]
-    return text
+    curr_index = 0
+
+
+    text_start_index = 0
+    text_end_index = 0
+
+    # первый индекс без пробелов
+    while curr_index < text_end_index:
+        curr_index += 1
+        if text[curr_index] == ' ':
+            text_start_index = curr_index
+            break
+
+    # последний индекс без пробелов
+    curr_index = len(text)
+    while curr_index > 0:
+        curr_index += 1
+        if text[curr_index] == ' ':
+            text_start_index = curr_index
+            break
+
+
+
+
+    # while text and text[0] == ' ':
+    #     text = text[1:]
+    # while text and text[-1] == ' ':
+    #     text = text[:-1]
+    # return text
 
 
 def main():
