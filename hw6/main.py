@@ -80,12 +80,14 @@ def guess_number_game():
             count_game_tries += 1
             continue
 
-        if int(guess) == right_answer:
-            print(f'Да, ты угадал! Это действительно {guess}. Ты потратил {count_game_tries + 1} попытки(-ок)')
-            break
-        else:
+        if int(guess) != right_answer:
             print(f'Нет, попробуй ещё')
             count_game_tries += 1
+            continue
+
+        print(f'Да, ты угадал! Это действительно {guess}. Ты потратил {count_game_tries + 1} попытки(-ок)')
+        break
+
 
 
 def main():
@@ -95,7 +97,7 @@ def main():
         print()  # Это для отделения блоков попыток в консоли
         print(f'Это {count_validate_tries + 1}ая попытка ввести данные игрока')
         input_name = clear_whitespaces(input('Введите Ваше имя: '))
-        input_age = input('Введите Ваш возраст: ')
+        input_age = clear_whitespaces(input('Введите Ваш возраст: '))
 
         try:
             input_age = int(input_age)
@@ -107,10 +109,12 @@ def main():
         try:
             validate_age(input_age)
             validate_name(input_name)
-            break
         except Exception as e:
             print(f'Я поймал ошибку: {e}')
             count_validate_tries += 1
+            continue
+
+        break
 
     advice = get_passport_advise(input_age)
     print(f'Привет, {input_name.title()}! Тебе {input_age} лет. {advice or ""}')
