@@ -1,11 +1,3 @@
-def get_passport_advise(age: int):
-    """Выдаёт совет про паспорт согласно возрастным рамкам"""
+from datetime import datetime
 
-    if 16 <= age <= 17:
-        return 'Нужно не забыть получить первый паспорт.'
-    if 25 <= age <= 26:
-        return 'Нужно не забыть заменить паспорт.'
-    if 45 <= age <= 46:
-        return 'Нужно не забыть второй раз заменить паспорт.'
-    return
-
+print(datetime.utcnow().strftime("%H:%M:%S"))
