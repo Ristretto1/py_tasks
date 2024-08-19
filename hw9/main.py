@@ -48,18 +48,22 @@ def main():
         input_login = input('Введите логин: ')
         input_password = input('Введите пароль: ')
 
-        if is_user_exist:
-            try:
-                authenticator.authorize(input_login, input_password)
-                break
-            except AuthorizationError as e:
-                print(e)
-        else:
+        if not is_user_exist:
             try:
                 authenticator.registrate(input_login, input_password)
-                break
+                print('Вы успешно зарегистрировались. Требуется авторизоваться')
+                is_user_exist = True
+                continue
             except RegistrationError as e:
-                print(e)
+                print(f'Ошибка: {e}')
+
+
+        try:
+            authenticator.authorize(input_login, input_password)
+            break
+        except AuthorizationError as e:
+            print(f'Ошибка: {e}')
+
 
     print(f'\nВаш логин: {authenticator.login}')
     print(
