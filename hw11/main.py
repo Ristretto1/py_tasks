@@ -1,9 +1,8 @@
 """Домашка в отдельном файле рядом"""
 
 from random import randrange
-
-from hw10.authenticator import Authenticator
-from hw10.exceptions import AuthorizationError, RegistrationError
+from hw11.authenticator import Authenticator
+from hw11.exceptions import AuthorizationError, RegistrationError
 
 
 def guess_number_game():
@@ -41,9 +40,10 @@ def auth_loop(func):
     return wrapper
 
 
+authenticator = Authenticator()
+
 @auth_loop
 def main():
-    authenticator = Authenticator()
 
     is_user_exist = authenticator.login
 
@@ -69,12 +69,12 @@ def main():
         guess_number_game()
         return True
 
+
     try:
         authenticator.registrate(input_login, input_password)
         print('Вы успешно зарегистрировались. Требуется авторизоваться')
     except RegistrationError as e:
         print(f'Ошибка: {e}')
         return False
-
 
 main()
