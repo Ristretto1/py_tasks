@@ -2,7 +2,8 @@
 
 from random import randrange
 from hw11.authenticator import Authenticator
-from hw11.exceptions import AuthorizationError, RegistrationError
+from hw11.exceptions import AuthorizationError, RegistrationError, ValidationError
+from hw11.validator import Validator
 
 
 def guess_number_game():
@@ -41,40 +42,48 @@ def auth_loop(func):
 
 
 authenticator = Authenticator()
+validator = Validator()
+
 
 @auth_loop
 def main():
-
-    is_user_exist = authenticator.login
+    is_user_exist = authenticator.email
 
     if not is_user_exist:
         print('Вы проходите регистрацию')
     else:
-        print('Чтобы авторизоваться нужно ввести логин и пароль')
+        print('Чтобы авторизоваться нужно ввести email и пароль')
 
-    input_login = input('Введите логин: ')
+    input_email = input('Введите email: ')
     input_password = input('Введите пароль: ')
+
+    try:
+        validator.validate_email(input_email)
+        validator.validate_password(input_password)
+    except ValidationError as e:
+        print(f'Ошибка: {e}')
+        return False
 
     if is_user_exist:
         try:
-            authenticator.authorize(input_login, input_password)
+            authenticator.authorize(input_email, input_password)
         except AuthorizationError as e:
             print(f'Ошибка: {e}')
             return False
 
-        print(f'\nВаш логин: {authenticator.login}')
+        print(f'\nВаш email: {authenticator.email}')
         print(f'Успешная авторизация в: {authenticator.last_success_login_at.strftime("%d.%m.%Y %H:%M:%S")}')
         print(f'{authenticator.errors_count} раз(а) пытались войти в приложение с ошибкой авторизации.')
 
         guess_number_game()
         return True
 
-
     try:
-        authenticator.registrate(input_login, input_password)
+        authenticator.registrate(input_email, input_password)
         print('Вы успешно зарегистрировались. Требуется авторизоваться')
     except RegistrationError as e:
         print(f'Ошибка: {e}')
         return False
+
 
 main()

@@ -4,3 +4,7 @@ class AuthorizationError(Exception):
 
 class RegistrationError(Exception):
     """Класс ошибки регистрации"""
+
+
+class ValidationError(Exception):
+    """Класс ошибки валидации данных"""
