@@ -1,3 +1,5 @@
+![result_vs_task](result_vs_task.png)
+
 Реализовать в базе данных SQLite, Postgres, MySQL или MariaDB таблички, которые на картинке. И также необходимо связать их внешними ключами.
 
 Id в каждой таблице — первичный ключ, autoincrement.
